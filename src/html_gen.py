@@ -2,9 +2,7 @@ import psycopg
 from psycopg.rows import dict_row
 
 from database import read_config
-
-
-Property = dict[str, str]
+from utils import Property
 
 
 def prop_to_html(prop: Property) -> str:
