@@ -14,7 +14,7 @@ from utils import Property
 URL: Final[str] = 'https://www.sreality.cz/en/search/for-sale/apartments'
 
 
-def load_page() -> BeautifulSoup:
+def download_page() -> BeautifulSoup:
     chromedriver_autoinstaller.install()
 
     options: Options = Options()
@@ -42,7 +42,7 @@ def load_page() -> BeautifulSoup:
 
 
 def scrape() -> list[Property]:
-    soup: BeautifulSoup = load_page()
+    soup: BeautifulSoup = download_page()
     props: list[Property] = []
     for prop in soup.find_all(class_='property'):
         props.append({

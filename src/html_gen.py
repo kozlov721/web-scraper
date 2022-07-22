@@ -19,7 +19,7 @@ def prop_to_html(prop: Property) -> str:
     '''
 
 
-def generate_page() -> None:
+def generate_html() -> None:
     with psycopg.connect(**read_config()) as conn:
         with conn.cursor(row_factory=dict_row) as cur:
             cur.execute('SELECT name, locality, img, url FROM properties')
