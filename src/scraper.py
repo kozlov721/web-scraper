@@ -21,29 +21,24 @@ def load_page() -> BeautifulSoup:
     options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    driver = webdriver.Chrome(options=options)
-    driver.get(URL)
-    driver.delete_cookie('per_page')
-    driver.add_cookie({
-        'name': 'per_page',
-        'value': '500',
-        'domain': 'www.sreality.cz'
-    })
-    driver.refresh()
+    with webdriver.Chrome(options=options) as driver:
+        driver.get(URL)
+        driver.delete_cookie('per_page')
+        driver.add_cookie({
+            'name': 'per_page',
+            'value': '500',
+            'domain': 'www.sreality.cz'
+        })
+        driver.refresh()
 
-    try:
-        WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "name"))
-        )
-    except TimeoutError:
-        print("Timeout when waiting for the list of apartments.",
-              file=sys.stderr)
+        try:
+            WebDriverWait(driver, 30).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "name"))
+            )
+        except TimeoutError:
+            print("Timeout when waiting for page refresh.", file=sys.stderr)
 
-    source: str = driver.page_source
-
-    driver.quit()
-
-    return BeautifulSoup(source, 'html.parser')
+        return BeautifulSoup(driver.page_source, 'html.parser')
 
 
 def scrape() -> list[Property]:
