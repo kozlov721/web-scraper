@@ -4,7 +4,11 @@ Property = dict[str, str]
 def prop_to_html(prop: Property) -> str:
     return f'''
       <div>
-        <h2>{prop['name']}</h2>
+        <h2>
+          <a href="{prop['url']}">
+            {prop['name']}
+          </a>
+        </h2>
         <h3>{prop['locality']}</h3>
         <img src="{prop['img']}" alt="{prop['locality']}">
       </div>

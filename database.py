@@ -26,10 +26,15 @@ def save_to_db(props: list[Property]) -> None:
                     id serial PRIMARY KEY,
                     name text,
                     locality text,
-                    img text)
+                    img text,
+                    url text
+                )
             ''')
             for prop in props:
                 cur.execute(
-                    'INSERT INTO properties (name, locality, img) VALUES (%s, %s, %s)',
-                    (prop['name'], prop['locality'], prop['img'])
+                    '''
+                    INSERT INTO properties (name, locality, img, url)
+                    VALUES (%s, %s, %s, %s)
+                    ''',
+                    (prop['name'], prop['locality'], prop['img'], prop['url'])
                 )

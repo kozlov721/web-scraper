@@ -53,5 +53,6 @@ def scrape() -> list[dict[str, str]]:
             'name': prop.find(class_='name').text,
             'locality': prop.find(class_='locality').text,
             'img': prop.find('img').attrs['src'],
+            'url': f'https://www.sreality.cz/{prop.find(class_="title")["href"]}',
         })
     return props
