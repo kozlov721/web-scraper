@@ -1,0 +1,4 @@
+psycopg==3.0.15
+beautifulsoup4==4.11.1
+selenium==4.3.0
+chromedriver-autoinstaller==0.3.1

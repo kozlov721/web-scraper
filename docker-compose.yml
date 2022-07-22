@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  product-service:
+    build: .
+    depends_on:
+      - chrome
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8080:8080
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=very_secure_and_long_password
+      - POSTGRES_DB=properties
