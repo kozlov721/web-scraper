@@ -1,0 +1,1 @@
+Property = dict[str, str]
