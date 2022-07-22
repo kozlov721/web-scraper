@@ -11,7 +11,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from utils import Property
 
-
 URL: Final[str] = 'https://www.sreality.cz/en/search/for-sale/apartments'
 
 
