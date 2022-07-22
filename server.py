@@ -1,9 +1,4 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from typing import Final
-
-
-HOSTNAME: Final[str] = '0.0.0.0'
-PORT: Final[int] = 8080
 
 
 class Server(BaseHTTPRequestHandler):
@@ -17,7 +12,7 @@ class Server(BaseHTTPRequestHandler):
             self.wfile.write(bytes(index.read(), 'utf-8'))
 
 
-def start_server():
-    server = HTTPServer((HOSTNAME, PORT), Server)
-    print(f'Server started at http://{HOSTNAME}:{PORT}')
+def start_server(hostname: str, port: int):
+    server = HTTPServer((hostname, port), Server)
+    print(f'Starting server at http://127.0.0.1:{port}', flush=True)
     server.serve_forever()
