@@ -23,7 +23,7 @@ def save_to_db(props: list[Property]) -> None:
     with psycopg.connect(**read_config()) as conn:
         with conn.cursor() as cur:
             cur.execute('''
-                CREATE TABLE properties (
+                CREATE TABLE IF NOT EXISTS properties (
                     id serial PRIMARY KEY,
                     name text,
                     locality text,
