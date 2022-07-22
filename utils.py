@@ -19,6 +19,7 @@ def generate_page(props: list[Property]) -> None:
         <head>
           <meta charset="utf-8">
           <title>apartments for sale</title>
+          <link rel="icon" href="data:,">
         </head>
         <body>
           {props_html}
