@@ -48,7 +48,7 @@ def load_page() -> BeautifulSoup:
 
 def scrape() -> list[Property]:
     soup: BeautifulSoup = load_page()
-    props: list[dict[str, str]] = []
+    props: list[Property] = []
     for prop in soup.find_all(class_='property'):
         props.append({
             'name': prop.find(class_='name').text,
