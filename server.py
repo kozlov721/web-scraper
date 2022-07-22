@@ -18,6 +18,6 @@ class Server(BaseHTTPRequestHandler):
 
 
 def start_server():
-    webServer = HTTPServer((HOSTNAME, PORT), Server)
+    server = HTTPServer((HOSTNAME, PORT), Server)
     print(f'Server started at http://{HOSTNAME}:{PORT}')
-    webServer.serve_forever()
+    server.serve_forever()
