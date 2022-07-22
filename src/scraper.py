@@ -18,9 +18,9 @@ def download_page() -> BeautifulSoup:
     chromedriver_autoinstaller.install()
 
     options: Options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
     with webdriver.Chrome(options=options) as driver:
         driver.get(URL)
         driver.delete_cookie('per_page')
@@ -33,10 +33,10 @@ def download_page() -> BeautifulSoup:
 
         try:
             WebDriverWait(driver, 30).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "name"))
+                EC.presence_of_element_located((By.CLASS_NAME, 'name'))
             )
         except TimeoutError:
-            print("Timeout when waiting for page refresh.", file=sys.stderr)
+            raise TimeoutError('Timeout when waiting for page refresh.')
 
         return BeautifulSoup(driver.page_source, 'html.parser')
 
