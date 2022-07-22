@@ -1,5 +1,6 @@
-import psycopg
 from configparser import ConfigParser
+
+import psycopg
 
 from utils import Property
 
