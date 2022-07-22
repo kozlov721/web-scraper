@@ -3,7 +3,6 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 
 class Server(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
-        self.send_response(200)
         if self.path == '/':
             self.path = '/index.html'
         with open(self.path[1:]) as index:
