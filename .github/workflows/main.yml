@@ -19,7 +19,7 @@ jobs:
 
       - name: Test number of results
         run: |
-          while ! (echo 'GET /' | ncat localhost 8080 > /dev/null 2>&1); do
+          while ! (echo -e 'GET /\n' | netcat localhost 8080 > /dev/null 2>&1); do
             sleep 1
           done
-          test "$(echo 'GET /' | ncat localhost 8080 | grep -c '<div>')" -eq 500
+          test "$(echo -e 'GET /\n' | netcat localhost 8080 | grep -c '<div>')" -eq 500
