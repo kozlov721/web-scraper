@@ -1,4 +1,3 @@
-import sys
 from typing import Final
 
 import chromedriver_autoinstaller
