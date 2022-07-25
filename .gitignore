@@ -1,0 +1,6 @@
+playground.ipynb
+__pycache__
+.*
+!.github
+!.gitignore
+index.html
