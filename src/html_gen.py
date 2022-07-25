@@ -22,8 +22,11 @@ def prop_to_html(prop: Property) -> str:
 def generate_html() -> None:
     with psycopg.connect(**read_config()) as conn:
         with conn.cursor(row_factory=dict_row) as cur:
-            cur.execute('SELECT name, locality, img, url FROM properties')
-
+            cur.execute('''
+                SELECT name, locality, img, url
+                FROM properties
+                LIMIT 500
+            ''')
             props_html = ''.join(prop_to_html(prop) for prop in cur)
             html = f'''
               <!DOCTYPE html>
