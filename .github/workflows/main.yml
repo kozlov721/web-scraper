@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest    
+    steps:
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.1.0
+        with:
+          up-flags: "-d"
+
+      - name: Test number of results
+        run: |
+          while ! (echo 'GET /' | ncat localhost 8080 > /dev/null 2>&1); do
+            sleep 1
+          done
+          test "$(echo 'GET /' | ncat localhost 8080 | grep -c '<div>')" -eq 500
